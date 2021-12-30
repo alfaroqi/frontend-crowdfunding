@@ -23,6 +23,7 @@
             >
             <input
               type="email"
+              v-model="login.email"
               class="
                 auth-form
                 focus:outline-none
@@ -32,7 +33,6 @@
                 focus:text-gray-100
               "
               placeholder="Write your email address here"
-              value="julia.keeva@gmail.com"
             />
           </div>
         </div>
@@ -42,7 +42,9 @@
               >Password</label
             >
             <input
+              @keyup.enter="userLogin"
               type="password"
+              v-model="login.password"
               class="
                 auth-form
                 focus:outline-none
@@ -52,14 +54,13 @@
                 focus:text-gray-100
               "
               placeholder="Write your password here"
-              value="nasigorenglimaribbu"
             />
           </div>
         </div>
         <div class="mb-6">
           <div class="mb-4">
             <button
-              @click="$router.push({ path: '/' })"
+              @click="userLogin"
               class="
                 block
                 w-full
@@ -93,8 +94,28 @@
 <script>
 export default {
   layout: 'auth',
+  data() {
+    return {
+      login: {
+        email: 'alfaroqi@gmail.com',
+        password: 'password',
+      },
+    }
+  },
+  methods: {
+    async userLogin() {
+      try {
+        let response = await this.$auth.loginWith('local', { data: this.login })
+        this.$auth.setUser(response.data.data)
+        console.log(response)
+      } catch (err) {
+        console.log(err)
+      }
+    },
+  },
 }
 </script>
+
 
 <style scoped>
 .auth-background {
