@@ -30,7 +30,7 @@
                 focus:text-gray-100
               "
               placeholder="Write Your Name Here"
-              value="Julia Keeva Hanna"
+              v-model="register.name"
             />
           </div>
         </div>
@@ -50,7 +50,7 @@
                 focus:text-gray-100
               "
               placeholder="Write your occupation here"
-              value="Graphic Designer"
+              v-model="register.occupation"
             />
           </div>
         </div>
@@ -70,7 +70,7 @@
                 focus:text-gray-100
               "
               placeholder="Write your email address here"
-              value="julia.keeva@gmail.com"
+              v-model="register.email"
             />
           </div>
         </div>
@@ -90,14 +90,15 @@
                 focus:text-gray-100
               "
               placeholder="Type your password here"
-              value="nasigorenglimaribbu"
+              v-model="register.password"
+              @keyup.enter="registerUser"
             />
           </div>
         </div>
         <div class="mb-6">
           <div class="mb-4">
             <button
-              @click="$router.push({ path: '/upload' })"
+              @click="userRegister"
               class="
                 block
                 w-full
@@ -131,6 +132,29 @@
 <script>
 export default {
   layout: 'auth',
+  data() {
+    return {
+      register: {
+        name: '',
+        email: '',
+        occupation: '',
+        password: '',
+      },
+    }
+  },
+  methods: {
+    async userRegister() {
+      try {
+        let response = await this.$axios.post('/api/v1/users', this.register)
+        console.log(response.data.data.token)
+        this.$auth.setToken(response.data.data.token).then(() => {
+          this.$router.push('/upload')
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  },
 }
 </script>
 
