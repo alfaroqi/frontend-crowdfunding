@@ -144,7 +144,7 @@
                   <div
                     :style="
                       'width: ' +
-                      (campaign.curent_amount / campaign.goal_amount) * 100 +
+                      (campaign.current_amount / campaign.goal_amount) * 100 +
                       '%'
                     "
                     class="
@@ -162,7 +162,13 @@
               </div>
               <div class="flex progress-info">
                 <div>
-                  {{ (campaign.curent_amount / campaign.goal_amount) * 100 }} %
+                  {{
+                    (
+                      (campaign.current_amount / campaign.goal_amount) *
+                      100
+                    ).toFixed(2)
+                  }}
+                  %
                 </div>
                 <div class="ml-auto font-semibold">
                   Rp

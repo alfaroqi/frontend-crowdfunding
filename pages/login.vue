@@ -97,8 +97,8 @@ export default {
   data() {
     return {
       login: {
-        email: 'alfaroqi@gmail.com',
-        password: 'password',
+        email: '',
+        password: '',
       },
     }
   },

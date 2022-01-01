@@ -12,7 +12,7 @@
         >
       </li>
       <li>
-        <a class="text-white hover:text-teal-500 text-lg px-4 py-3" href="#"
+        <a class="text-white hover:text-teal-500 text-lg px-4 py-3" href="/"
           >Project</a
         >
       </li>
