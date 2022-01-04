@@ -27,7 +27,7 @@
         </div>
         <div class="w-1/4 text-right">
           <nuxt-link
-            to="/dashboard/create"
+            to="/dashboard/projects/create"
             class="
               bg-orange-button
               hover:bg-green-button

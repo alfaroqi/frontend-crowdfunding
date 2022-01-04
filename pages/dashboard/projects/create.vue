@@ -16,8 +16,8 @@
           <h3 class="text-2xl text-gray-900 mb-4">Create New Projects</h3>
         </div>
         <div class="w-1/4 text-right">
-          <nuxt-link
-            to="/dashboard/detail"
+          <button
+            @click="save"
             class="
               bg-green-button
               hover:bg-green-button
@@ -31,7 +31,7 @@
             "
           >
             Save
-          </nuxt-link>
+          </button>
         </div>
       </div>
       <div class="block mb-2">
@@ -79,6 +79,7 @@
                     "
                     type="text"
                     placeholder="Contoh: Demi Gunpla Demi Istri"
+                    v-model="campaign.name"
                   />
                 </div>
                 <div class="w-full md:w-1/2 px-3">
@@ -110,6 +111,7 @@
                     "
                     type="number"
                     placeholder="Contoh: 200000"
+                    v-model.number="campaign.goal_amount"
                   />
                 </div>
                 <div class="w-full px-3">
@@ -143,6 +145,7 @@
                     "
                     type="text"
                     placeholder="Deskripsi singkat mengenai projectmu"
+                    v-model="campaign.short_description"
                   />
                 </div>
                 <div class="w-full px-3">
@@ -175,6 +178,7 @@
                     "
                     type="text"
                     placeholder="Contoh: Ayam, Nasi Goreng, Piring"
+                    v-model="campaign.perks"
                   />
                 </div>
                 <div class="w-full px-3">
@@ -207,6 +211,7 @@
                     "
                     type="text"
                     placeholder="Isi deskripsi panjang untuk projectmu"
+                    v-model="campaign.description"
                   ></textarea>
                 </div>
               </div>
@@ -220,3 +225,37 @@
     <Footer />
   </div>
 </template>
+
+
+<script>
+export default {
+  data() {
+    return {
+      campaign: {
+        name: '',
+        short_description: '',
+        description: '',
+        goal_amount: '',
+        perks: '',
+      },
+    }
+  },
+  methods: {
+    async save() {
+      try {
+        let response = await this.$axios.post(
+          '/api/v1/campaigns',
+          this.campaign
+        )
+        this.$router.push({
+          name: 'dashboard-projects-id',
+          params: { id: response.data.id },
+        })
+        console.log(response)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  },
+}
+</script>
