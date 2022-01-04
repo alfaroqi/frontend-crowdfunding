@@ -185,6 +185,7 @@
               ></div>
             </div>
           </div>
+          `
           <div class="flex progress-info mb-6">
             <div class="text-2xl">
               {{
