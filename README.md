@@ -1,6 +1,6 @@
 # frontend
 
-Backend Repository - https://github.com/alfaroqi/crowdfunding-starter-backend
+Backend Repository - https://github.com/alfaroqi/crowdfunding-backend
 
 ## Build Setup
 
