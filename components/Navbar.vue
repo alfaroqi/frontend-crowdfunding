@@ -90,7 +90,7 @@
           <img
             v-if="$auth.user.image_url"
             :src="$axios.defaults.baseURL + '/' + $auth.user.image_url"
-            alt="$auth.user.name"
+            alt=""
             class="h-8 rounded-full mr-2"
           />
 
